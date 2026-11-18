@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {projects} from '../data/projects';
+---
+<BaseLayout>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <p class="eyebrow">Engenharia · Inteligência Artificial · Pesquisa</p>
+      <h1 id="hero-title">Jacques Belmont<span class="dot">.</span></h1>
+      <p class="lead">Construo tecnologia que resolve problemas reais.</p>
+      <p class="muted introduction">Engenheiro de soluções, desenvolvedor e pesquisador em formação contínua. Trabalho com sistemas, agentes de IA e pesquisa aplicada.</p>
+      <div class="actions">
+        <a class="button primary" href="#projetos">Conheça meus projetos ↗</a>
+        <a class="button" href="curriculo/">Ver currículo</a>
+        <a class="button" href="sobre/">Sobre mim</a>
+      </div>
+    </div>
+    <div class="portrait" role="img" aria-label="Local reservado para fotografia profissional de Jacques Belmont">
+      <div class="portrait-inner"><span>JB</span><small>Retrato profissional a inserir</small></div>
+    </div>
+  </section>
+  <section class="expertise" aria-label="Áreas de atuação">
+    <div class="expertise-item"><span class="symbol" aria-hidden="true">⌘</span><strong>Engenharia de Software</strong><small>Sistemas e infraestrutura</small></div>
+    <div class="expertise-item"><span class="symbol" aria-hidden="true">✧</span><strong>Inteligência Artificial</strong><small>Agentes e visão computacional</small></div>
+    <div class="expertise-item"><span class="symbol" aria-hidden="true">⚗</span><strong>Pesquisa Aplicada</strong><small>Experimentação e publicação</small></div>
+    <div class="expertise-item"><span class="symbol" aria-hidden="true">◇</span><strong>Impacto Real</strong><small>Tecnologia em contextos reais</small></div>
+  </section>
+  <section id="projetos" class="section" aria-labelledby="featured-title">
+    <div class="section-title"><h2 id="featured-title">Projetos em destaque</h2><a class="more" href="projetos/">Ver todos →</a></div>
+    <div class="projects">
+      {projects.map(project => <a class="project" style={`--glow:${project.glow}`} href={`projetos/${project.slug}/`}>
+        <span class="project-mark" aria-hidden="true">{project.mark}</span>
+        <div class="project-content"><h3>{project.title} <span aria-hidden="true">↗</span></h3><p>{project.description}</p><div class="tags">{project.tags.map(tag=><span>{tag}</span>)}</div></div>
+      </a>)}
+    </div>
+  </section>
+  <section class="bottom" aria-label="Pesquisa, experiência e estudos">
+    <div><h3>Pesquisa & Publicações</h3><p class="muted">Projetos acadêmicos, investigações e artigos científicos com status editorial verificado.</p><a class="more" href="publicacoes/">Explorar publicações →</a></div>
+    <div><h3>Experiência</h3><p class="muted">Uma trajetória em tecnologia, desenvolvimento e construção de produtos.</p><a class="more" href="curriculo/">Ver trajetória →</a></div>
+    <div><h3>Diário de estudos</h3><p class="muted">Notas técnicas e aprendizados sobre IA, dados e engenharia.</p><a class="more" href="artigos/">Ler artigos →</a></div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {getCollection} from 'astro:content';
+const articles=await getCollection('articles');
+---
+<BaseLayout title="Artigos e estudos | Jacques Belmont"><section class="page"><p class="eyebrow">Notas técnicas</p><h1>Artigos e estudos</h1><p class="muted">Experimentos, tutoriais e aprendizados técnicos. Artigos científicos são listados separadamente em Publicações.</p>{articles.length===0?<article><h2>Textos em preparação</h2><p class="muted">A biblioteca de estudos receberá textos publicados em Markdown/MDX.</p></article>:articles.map(a=><article><h2>{a.data.title}</h2><p class="muted">{a.data.summary}</p></article>)}</section></BaseLayout>

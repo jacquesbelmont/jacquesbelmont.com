@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {projects} from '../../data/projects';
+export function getStaticPaths(){return projects.map(project=>({params:{slug:project.slug},props:{project}}));}
+const {project}=Astro.props;
+---
+<BaseLayout title={`${project.title} | Jacques Belmont`}><section class="page"><a class="more" href="projetos/">← Todos os projetos</a><p class="eyebrow">Projeto selecionado</p><h1>{project.title}</h1><p class="lead">{project.description}</p><div class="tags light-tags">{project.tags.map(tag=><span>{tag}</span>)}</div><article><h2>Estudo de caso em preparação</h2><p class="muted">A documentação detalhada trará o problema, a contribuição pessoal, a arquitetura, a metodologia, resultados verificáveis e limitações. Materiais privados ou de clientes não serão divulgados sem autorização.</p></article></section></BaseLayout>

@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {projects} from '../../data/projects';
+---
+<BaseLayout title="Projetos | Jacques Belmont"><section class="page"><p class="eyebrow">Engenharia e pesquisa aplicada</p><h1>Projetos</h1><p class="muted">Trabalhos selecionados. Os estudos de caso são preparados a partir de evidências e materiais publicáveis.</p>{projects.map(p=><article><h2><a href={`projetos/${p.slug}/`}>{p.title} ↗</a></h2><p>{p.description}</p></article>)}</section></BaseLayout>

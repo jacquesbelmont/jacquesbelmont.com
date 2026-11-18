@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {getCollection} from 'astro:content';
+const entries=await getCollection('publications');
+const statuses={'in-preparation':'Em preparação',submitted:'Submetido',accepted:'Aceito',preprint:'Preprint',published:'Publicado'};
+---
+<BaseLayout title="Publicações científicas | Jacques Belmont"><section class="page"><p class="eyebrow">Produção acadêmica</p><h1>Publicações científicas</h1><p class="muted">Artigos, trabalhos acadêmicos e preprints serão exibidos com seus estados editoriais corretos. Não são atribuídos DOIs fictícios.</p>{entries.length===0?<article><h2>Catálogo em organização</h2><p class="muted">Os registros serão adicionados após verificar título, autores, instituição, periódico ou congresso, datas e DOI quando disponível.</p></article>:entries.map(p=><article><h2>{p.data.title}</h2><p class="muted">{p.data.authors.join(', ')} · {statuses[p.data.status]} · {p.data.date.getFullYear()}</p>{p.data.doi&&<p>DOI: {p.data.doi}</p>}{p.data.url&&<a class="more" href={p.data.url}>Consultar publicação ↗</a>}</article>)}</section></BaseLayout>
